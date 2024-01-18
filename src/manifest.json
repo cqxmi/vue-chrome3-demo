@@ -1,0 +1,52 @@
+{
+    "manifest_version": 3,
+    "name": "chromeMV3",
+    "description": "chromeMV3",
+    "version": "1.0.0",
+    "icons": {
+        "48": "assets/logo.png",  
+        "128": "assets/logo.png"
+      },
+    "action": {
+        "default_icon": {
+            "19": "assets/logo.png",
+            "38": "assets/logo.png"
+        },
+        "default_popup": "popup.html",
+        "default_title": "my-chrome-vue"
+    },
+    "background": {
+        "service_worker": "js/background.js"
+      },
+    "content_scripts": [
+        {
+            "matches": [
+                "http://*/*",
+                "https://*/*"
+            ],
+            "js": [
+                "js/content.js"
+            ],
+            "run_at": "document_end"
+        }
+    ],
+    "host_permissions": ["http://*/*", "https://*/*"],
+    "permissions": [
+        "contextMenus",
+        "tabs",
+        "notifications",
+        "storage"
+    ],
+    "content_security_policy": {
+        "extension_pages": "script-src 'self'; object-src 'self'"
+    },
+    "web_accessible_resources": [
+        {
+            "resources":["js/content.js"],
+            "matches":[
+                "http://*/*",
+                "https://*/*"
+            ]
+        }
+    ]
+}
